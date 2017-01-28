@@ -37,7 +37,7 @@ class TextFileReader:
         countDeathRate = 5
 
 
-        if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
+        if (new_contentsBirthRate[startCountryBirthRate].contains(new_contentsDeathRate[startCountryDeathRate])):
             dataCSV['BigEarthCSV'].append({
                 'Country': new_contentsBirthRate[startCountryBirthRate],
                 'Percentage Birth Rate': new_contentsBirthRate[startPercentageBirthRate],
@@ -47,7 +47,7 @@ class TextFileReader:
             print("The countries are not in a listed order")
 
 
-        if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
+        if (new_contentsBirthRate[startCountryBirthRate].contains(new_contentsDeathRate[startCountryDeathRate])):
             dataCSV['BigEarthCSV'].append({
                 'Percentage Death Rate': new_contentsDeathRate[startPercentageDeathRate],
                 'Rank Death Rate': new_contentsDeathRate[startRankDeathRate],
@@ -61,7 +61,12 @@ class TextFileReader:
                                     quotechar=',', quoting=csv.QUOTE_MINIMAL)
             spamwriter.writerow(['Country', 'Percentage Birth Rate', 'Rank Birth Rate',
                                  'Percentage Death Rate', 'Rank Death Rate'])
-            spamwriter.writerow([dataCSV.get[0]])
+            spamwriter.writerow([dataCSV['BigEarthCSV'].get('Country'),
+                                 dataCSV['BigEarthCSV'].get('Percentage Birth Rate'),
+                                 dataCSV['BigEarthCSV'].get('Percentage Death Rate'),
+                                 dataCSV['BigEarthCSV'].get('Rank Death Rate'),
+                                 ])
+
 
 
 
