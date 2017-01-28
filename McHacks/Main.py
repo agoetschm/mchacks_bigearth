@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from Scrapping import Scrapping
 from TextFileReader import TextFileReader
 

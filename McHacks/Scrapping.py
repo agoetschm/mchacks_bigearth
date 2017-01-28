@@ -17,9 +17,9 @@ class Scrapping:
         fo = open(filename + ".txt", "w")
 
         for myTableStats in tableStats:
-            tbodyStats = myTableStats.find_all("tbody")
-            for myTbodyStats in tableStats:
-                trStats = myTbodyStats.find_all("tr")
+            #tbodyStats = myTableStats.find_all("tbody")
+            #for myTbodyStats in tableStats:
+                trStats = myTableStats.find_all("tr")
                 for myTrStats in trStats:
                     tdStats = myTrStats.find_all("td")
                     for myTdStats in tdStats:
@@ -30,13 +30,13 @@ class Scrapping:
                             val = list(filter((None).__ne__, val))
                             for v in val:
                                 fo.write(v)
-                                print(v)
+                                #print(v)
 
                         myTdStats = str(myTdStats)
                         start = myTdStats.index(">") + 1
                         end = myTdStats[start:].index("<")
                         if myTdStats[start:(start + end)] != '0':
-                            print(myTdStats[start:(start + end)])
+                            #print(myTdStats[start:(start + end)])
                             fo.write(myTdStats[start:(start + end)] + "\n");
                         else:
                             continue

@@ -12,60 +12,65 @@ class TextFileReader:
         new_contentsBirthRate = []
         new_contentsDeathRate = []
         dataCSV = {}
-        dataCSV['BigEarthCSV'] = []
+        #dataCSV['BigEarthCSV'] = []
 
-        for line in new_contentsBirthRate:
+        for line in contentsBirthRate:
             if not line.strip():
                 continue
             else:
                 new_contentsBirthRate.append(line.splitlines())
 
-        for line in new_contentsDeathRate:
+        for line in contentsDeathRate:
             if not line.strip():
                 continue
             else:
                 new_contentsDeathRate.append(line.splitlines())
 
-        startCountryBirthRate = 6
-        startPercentageBirthRate = 13
-        startRankBirthRate = 14
+        startCountryBirthRate = 0
+        startPercentageBirthRate = 7
+        startRankBirthRate = 8
         countBirthRate = 11
 
-        startCountryDeathRate = 6
-        startPercentageDeathRate = 9
-        startRankDeathRate = 10
+        startCountryDeathRate = 0
+        startPercentageDeathRate = 3
+        startRankDeathRate = 4
         countDeathRate = 5
 
 
-        if (new_contentsBirthRate[startCountryBirthRate].contains(new_contentsDeathRate[startCountryDeathRate])):
-            dataCSV['BigEarthCSV'].append({
-                'Country': new_contentsBirthRate[startCountryBirthRate],
-                'Percentage Birth Rate': new_contentsBirthRate[startPercentageBirthRate],
-                'Rank Birth Rate': new_contentsBirthRate[startRankBirthRate],
-            })
-        else:
-            print("The countries are not in a listed order")
+        #if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
+        dataCSV= {
+            'Country': new_contentsBirthRate[startCountryBirthRate],
+            'Percentage Birth Rate': new_contentsBirthRate[startPercentageBirthRate],
+            'Rank Birth Rate': new_contentsBirthRate[startRankBirthRate]
+        }
+        #else:
+        #    print("The countries are not in a listed order")
 
 
-        if (new_contentsBirthRate[startCountryBirthRate].contains(new_contentsDeathRate[startCountryDeathRate])):
-            dataCSV['BigEarthCSV'].append({
-                'Percentage Death Rate': new_contentsDeathRate[startPercentageDeathRate],
-                'Rank Death Rate': new_contentsDeathRate[startRankDeathRate],
-            })
-        else:
-            print("The countries are not in a listed order")
+        #if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
+        dataCSV.update({
+            'Percentage Death Rate': new_contentsDeathRate[startPercentageDeathRate],
+            'Rank Death Rate': new_contentsDeathRate[startRankDeathRate]
+        })
+
+        #else:
+        #    print("The countries are not in a listed order")
+
+        print (dataCSV)
+        print(dataCSV.get('Country'))
 
 
         with open('BirthAndDeathRate.csv', 'w', newline='') as csvfile:
             spamwriter = csv.writer(csvfile, delimiter=' ',
-                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
+                                    quotechar=',', quoting=csv.QUOTE_ALL)
             spamwriter.writerow(['Country', 'Percentage Birth Rate', 'Rank Birth Rate',
                                  'Percentage Death Rate', 'Rank Death Rate'])
-            spamwriter.writerow([dataCSV['BigEarthCSV'].get('Country'),
-                                 dataCSV['BigEarthCSV'].get('Percentage Birth Rate'),
-                                 dataCSV['BigEarthCSV'].get('Percentage Death Rate'),
-                                 dataCSV['BigEarthCSV'].get('Rank Death Rate'),
-                                 ])
+            spamwriter.writerow([dataCSV.get('Country'),
+                                dataCSV.get('Percentage Birth Rate'),
+                                dataCSV.get('Rank Birth Rate'),
+                                dataCSV.get('Percentage Death Rate'),
+                                dataCSV.get('Rank Death Rate')])
+        '''
 
 
 
@@ -117,6 +122,4 @@ class TextFileReader:
                 'Date': new_contents[startDate],
                 'Percentage': new_contents[startPercentage]
             })
-'''
-        #with open('jsonPopulation.json', 'w') as outfile:
-         #   json.dump(dataPopulation, outfile, indent=4)
+
