@@ -34,6 +34,7 @@ class TextFileReader:
         startCountryDeathRate = 6
         startPercentageDeathRate = 9
         startRankDeathRate = 10
+        countDeathRate = 5
 
 
         if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
@@ -48,13 +49,19 @@ class TextFileReader:
 
         if (new_contentsBirthRate[startCountryBirthRate] == new_contentsDeathRate[startCountryDeathRate]):
             dataCSV['BigEarthCSV'].append({
-                'Percentage Death Rate': new_contentsBirthRate[startPercentageBirthRate],
-                'Rank Death Rate': new_contentsBirthRate[startRankBirthRate],
+                'Percentage Death Rate': new_contentsDeathRate[startPercentageDeathRate],
+                'Rank Death Rate': new_contentsDeathRate[startRankDeathRate],
             })
         else:
             print("The countries are not in a listed order")
 
 
+        with open('BirthAndDeathRate.csv', 'w', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile, delimiter=' ',
+                                    quotechar=',', quoting=csv.QUOTE_MINIMAL)
+            spamwriter.writerow(['Country', 'Percentage Birth Rate', 'Rank Birth Rate',
+                                 'Percentage Death Rate', 'Rank Death Rate'])
+            spamwriter.writerow([dataCSV.get[0]])
 
 
 
@@ -63,6 +70,8 @@ class TextFileReader:
 
 
 
+
+'''
         new_contents = []
         dataPopulation = {}
         dataPopulation['PopulationData'] = []
@@ -103,6 +112,6 @@ class TextFileReader:
                 'Date': new_contents[startDate],
                 'Percentage': new_contents[startPercentage]
             })
-
-        with open('jsonPopulation.json', 'w') as outfile:
-            json.dump(dataPopulation, outfile, indent=4)
+'''
+        #with open('jsonPopulation.json', 'w') as outfile:
+         #   json.dump(dataPopulation, outfile, indent=4)
