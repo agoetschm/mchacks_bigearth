@@ -1,10 +1,16 @@
 # -*- coding: utf-8 -*-
 from Scrapping import Scrapping
-from TextFileReader import TextFileReader
+from MongoDB import MongoDB
 
 class Main():
     if __name__=="__main__":
 
         scrappingObj = Scrapping()
 
-        scrappingObj.getScrappedData()
+        data = scrappingObj.getScrappedData()
+        #data=  {"author": "Mike",  "text": "My first blog post!", "tags": ["mongodb", "python", "pymongo"]}
+
+        mongo = MongoDB()
+
+        mongo.createInstance()
+        mongo.insertData(data)
