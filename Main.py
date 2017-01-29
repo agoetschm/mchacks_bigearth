@@ -8,14 +8,13 @@ class Main():
         scrappingObj = Scrapping()
 
         raw_data = scrappingObj.getScrappedData()
-        # data in the form : {"country1":[f1, f2, ...], "country2": [f1, f2, ...], ...}
+        # raw data in the form : {"country1":[f1, f2, ...], "country2": [f1, f2, ...], ...}
         # we want [{"country":country, "f1": f1, "f2": f2, ...}, {...}, ...]
         labels = raw_data["labels"]
         del raw_data["labels"]
         data = []
         for country, features in raw_data.items():
             features_dict = {}
-            # print(features)
             for label, feature in zip(labels, features):
                 features_dict[label] = feature
             features_dict["country"] = country
@@ -23,9 +22,8 @@ class Main():
 
         print(data)
 
-        #data=  {"author": "Mike",  "text": "My first blog post!", "tags": ["mongodb", "python", "pymongo"]}
-
         mongo = MongoDB()
 
-        mongo.createInstance()
-        mongo.insertData(data)
+        mongo.openDB()
+        mongo.clearTable()
+        mongo.insert(data)

@@ -1,26 +1,21 @@
 from pymongo import MongoClient
 
+
 class MongoDB:
     def __init__(self):
         self.db = None
-        self.collection = None
-    def createInstance(self):
+
+    def openDB(self):
         connection = MongoClient('localhost', 27017)
         self.db = connection['bigearth']
 
-
-
-    def insertData(self,dataMongo):
+    def insert(self, data):
         collection = self.db.countryfeatures
-        result = collection.insert(dataMongo)
+        result = collection.insert(data)
         print(result)
-        #print(dataMongo)
+        # print(dataMongo)
 
-    #def selectData(self):
-
-
-
-
-
-
-
+        # def selectData(self):
+    def clearTable(self):
+        collection = self.db.countryfeatures
+        collection.delete_many({})
