@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from Scrapping import Scrapping
-from MongoDB import MongoDB
+from scraping.Scrapping import Scrapping
+from db.MongoDB import MongoDB
 
 class Main():
     if __name__=="__main__":
@@ -9,17 +9,17 @@ class Main():
 
         raw_data = scrappingObj.getScrappedData()
         # data in the form : {"country1":[f1, f2, ...], "country2": [f1, f2, ...], ...}
-        # we want {"country1":{"f1": f1, "f2": f2, ...}, "country2": ...}
+        # we want [{"country":country, "f1": f1, "f2": f2, ...}, {...}, ...]
         labels = raw_data["labels"]
         del raw_data["labels"]
-        data = {}
+        data = []
         for country, features in raw_data.items():
             features_dict = {}
             # print(features)
             for label, feature in zip(labels, features):
                 features_dict[label] = feature
             features_dict["country"] = country
-            data[country] = features_dict
+            data += [features_dict]
 
         print(data)
 
