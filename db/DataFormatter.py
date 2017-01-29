@@ -8,14 +8,13 @@ class DataFormatter:
         for country, features in raw_data.items():
             features_dict = {}
             for label, feature in zip(labels, features):
-                print(label)
                 features_dict[label] = self.formatFeature(feature)
             features_dict["country"] = country
             data += [features_dict]
 
-        print(data)
         return data
 
+    # cover some special cases of the data from Wikipedia
     def formatFeature(self, raw):
         if raw:
             if raw == "-" or raw == "N/A":

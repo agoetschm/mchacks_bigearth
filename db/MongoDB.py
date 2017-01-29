@@ -19,10 +19,8 @@ class MongoDB:
     def insert(self, data):
         collection = self.db.countryfeatures
         result = collection.insert(DataFormatter().format(data))
-        print(result)
-        # print(dataMongo)
+        #print(result)
 
-        # def selectData(self):
     def clearTable(self):
         collection = self.db.countryfeatures
         collection.delete_many({})
@@ -33,5 +31,3 @@ class MongoDB:
         df = df.drop("_id", axis=1)
         df = df.set_index("country")
         return df
-
-
