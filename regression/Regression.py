@@ -43,6 +43,5 @@ class Regression:
         labels = list(df)
         labels.remove("HappinessRate")
 
-        # print(labels)
-        # print(coefs)
-        print(list(zip(labels, coefs[0])))
+        coefForFeature = list(zip(labels, coefs[0]))
+        return coefForFeature
