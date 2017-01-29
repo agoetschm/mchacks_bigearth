@@ -11,8 +11,8 @@ class MongoDB:
 
 
     def insertData(self,dataMongo):
-        data = self.db.collection
-        result = data.insert_one(dataMongo)
+        collection = self.db.countryfeatures
+        result = collection.insert_one(dataMongo)
         print(dataMongo)
 
     #def selectData(self):
